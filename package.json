@@ -9,9 +9,13 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "deep-email-validator": "^0.1.21",
+    "dtoaster": "^0.1.4",
+    "jquery": "^3.6.0",
     "register-service-worker": "^1.7.1",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
+    "vue-simple-alert": "^1.1.1",
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {

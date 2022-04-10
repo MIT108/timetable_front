@@ -1,4 +1,7 @@
 import { createStore } from 'vuex'
+import auth from './moduls/auth/index'
+import Day from './moduls/Day'
+import Period from './moduls/Period'
 
 export default createStore({
   state: {
@@ -8,5 +11,8 @@ export default createStore({
   actions: {
   },
   modules: {
+    auth,
+    Day,
+    Period
   }
 })
