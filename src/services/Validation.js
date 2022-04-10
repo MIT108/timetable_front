@@ -1,6 +1,6 @@
 export default class Validation{
     static checkEmail(email){
-        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))
+        if (email)
         {
           return true
         }
