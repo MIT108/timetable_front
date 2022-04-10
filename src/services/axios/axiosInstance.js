@@ -3,7 +3,7 @@ import store from '../../store/index'
 import { GET_USER_TOKEN_GETTER } from '../../store/storeConstants';
 
 const axiosInstance = Axios.create({
-    baseURL: 'http://localhost:8000/api/v1'
+    baseURL: 'https://mit-timetable-backend.herokuapp.com/api/v1'
 })
 
 axiosInstance.defaults.headers.accept = 'application/json'

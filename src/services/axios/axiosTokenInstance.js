@@ -6,7 +6,7 @@ import store from '../../store'
 
 
 const axiosTokenInstance = Axios.create({
-    baseURL: 'http://127.0.0.1:8000/api/v1/'
+    baseURL: 'https://mit-timetable-backend.herokuapp.com/api/v1/'
 })
 
 axiosTokenInstance.defaults.headers.accept = 'application/json'
