@@ -79,7 +79,7 @@
                                             <span v-bind:class="{'text-primary': listAllInActiveDaysActive}" v-on:click="listAllInActiveDays()" style="cursor: pointer">Inactive</span>
                                         </div>
                                         <div class="card-body">
-                                            <div class="g-discussion-inner row" v-for="(day , index) in days" :key="day.id">
+                                            <div class="g-discussion-inner row" v-for="(day ) in days" :key="day.id">
                                                 <div class="col-md-6 col-xl-12 cursor-pointer" style="cursor:pointer;">
                                                     <div class="bg-white py-12 px-12 rounded d-flex mb-20 justify-content-between align-items-center align-items-center shadow-sm">
                                                         <div class="flex-grow-1">
