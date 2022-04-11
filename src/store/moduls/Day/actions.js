@@ -1,7 +1,10 @@
 import axiosInstance from "../../../services/axios/axiosInstance";
 import {
+    AUTO_GET_DAY,
     CHANGE_DAY_STATUS,
-    CREATE_NEW_DAY, DELETE_DAY, DISPLAY_ALL_DAYS
+    CREATE_NEW_DAY, DELETE_DAY, DISPLAY_ALL_DAYS, 
+    GET_PERIOD_OF_DAY,
+    SET_CURRENT_DAY
 } from "../../TimetableConstants";
 
 
@@ -70,5 +73,30 @@ export default {
             throw e.response.data
         }
         return response
-    }
+    }, 
+
+    async [GET_PERIOD_OF_DAY](__, payload){
+        let response = ''
+
+        let dayId = payload.dayId
+
+        try {
+            response = await axiosInstance.get(
+                "/timetable/periods/list/"+dayId
+            )
+        } catch (error) {
+            throw error.response.data
+        }
+
+        return response
+
+    },
+
+    [AUTO_GET_DAY](context) {
+        let Day = localStorage.getItem('timetableCurrentDay')
+        if (Day) {
+            context.commit(SET_CURRENT_DAY, JSON.parse(Day))
+        }
+    },
+
 }

@@ -6,7 +6,8 @@ import {
     IS_USER_VERIFIED_ACTION,
     LOGIN_ACTION,
     SET_USER_TOKEN_DATA_MUTATION,
-    VERIFYING_USER_ACTION
+    VERIFYING_USER_ACTION,
+    TEST
 } from '../../storeConstants'
 import axiosInstance from '../../../services/axios/axiosInstance'
 import store from '../../index';
@@ -14,6 +15,19 @@ import Axios from 'axios';
 // import axiosTokenInstance from '../../../services/axios/axiosTokenInstance'
 
 export default {
+    async [TEST](){
+        let response = ''
+
+        try {
+            response = await axiosInstance.get(
+                "/test"
+            )
+        } catch (error) {
+            throw error.response.data
+        }
+
+        return response
+    },
     async [LOGIN_ACTION](context, payload) {
         return context.dispatch(AUTH_ACTION, {
             ...payload,

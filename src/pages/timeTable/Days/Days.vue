@@ -44,12 +44,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-6" v-for="(period) in periods" :key="period.id">
                                 <div class="card">
                                     <div class="card-body courses-details">
-                                        <h5>Amazon Web Services Certification</h5>
+                                        <h5>{{ period.name }}</h5>
 
-                                        <p>Videos, labs &amp; practice exams - AWS Certified (Solutions Architect, Developer, SysOps Administrator, Cloud Practitioner)</p>
+                                        <p>{{ period.description }}</p>
                                         <div class="courses-action">
                                             <button class="btn btn-primary text-white" href="upload.html">Edit</button>
                                             <button type="button" class="text-light btn btn-danger" data-bs-toggle="modal" data-bs-target="#courseAnalytic">
@@ -79,7 +79,7 @@
                                             <span v-bind:class="{'text-primary': listAllInActiveDaysActive}" v-on:click="listAllInActiveDays()" style="cursor: pointer">Inactive</span>
                                         </div>
                                         <div class="card-body">
-                                            <div class="g-discussion-inner row" v-for="(day ) in days" :key="day.id">
+                                            <div class="g-discussion-inner row" v-for="(day ) in days" :key="day.id" v-on:click="onDayClick(day.id)">
                                                 <div class="col-md-6 col-xl-12 cursor-pointer" style="cursor:pointer;">
                                                     <div class="bg-white py-12 px-12 rounded d-flex mb-20 justify-content-between align-items-center align-items-center shadow-sm">
                                                         <div class="flex-grow-1">
@@ -122,17 +122,24 @@ import Sidebar from "../../Headers/SideBar";
 import {
     DISPLAY_ALL_DAYS,
     CHANGE_DAY_STATUS,
-    DELETE_DAY
+    DELETE_DAY,
+GET_CURRENT_DAY,
+SET_CURRENT_DAY,
+GET_PERIOD_OF_DAY
 } from "../../../store/TimetableConstants";
 import {
-    mapActions
+    mapActions, mapGetters, mapMutations
 } from "vuex";
 export default {
     methods: {
         ...mapActions("Day", {
             displayDay: DISPLAY_ALL_DAYS,
             changeDayStatus: CHANGE_DAY_STATUS,
-            deleteDay: DELETE_DAY
+            deleteDay: DELETE_DAY,
+            getDayPeriod: GET_PERIOD_OF_DAY
+        }),
+        ...mapMutations("Day", {
+            setDay: SET_CURRENT_DAY
         }),
         listAllInActiveDays() {
             this.url = "/list/0"
@@ -185,6 +192,21 @@ export default {
                 this.message = response.data.success
                 this.listAllDays();
             })
+        },
+        onDayClick(id){
+            this.setDay({dayId: id})
+            
+                let data = {
+                    dayId: this.getDay
+                }
+            localStorage.setItem('timetableCurrentDay', JSON.stringify(data))
+            this.getDayPeriod({dayId: this.getDay}).catch((error) => {
+                this.type = "alert alert-danger col-12 mb-16"
+                this.message = error.message
+            }).then((response) => {
+                this.periods = response.data.periods
+
+            })
         }
     },
     data() {
@@ -196,14 +218,23 @@ export default {
             listAllActiveDaysActive: false,
             url: '',
             days: [],
+            periods: []
         }
     },
     created() {
         this.listAllDays();
+        if (this.getDay != null && this.getDay != "") { 
+            this.onDayClick(this.getDay)
+        }
     },
     components: {
         TopBar,
         Sidebar,
     },
+    computed: {
+        ...mapGetters("Day", {
+            getDay: GET_CURRENT_DAY
+        }),
+    }
 };
 </script>

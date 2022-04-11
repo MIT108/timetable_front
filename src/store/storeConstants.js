@@ -1,4 +1,5 @@
 //Authentication constants
+export const TEST = 'test';
 export const LOGIN_ACTION = '[action] login';
 export const LOGOUT_ACTION = '[action] logout';
 export const AUTH_ACTION = '[action] user auth'

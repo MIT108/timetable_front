@@ -7,7 +7,8 @@ export default {
     async [CREATE_NEW_PERIOD](__, payload) {
         let postData = {
             name: payload.name,
-            description: payload.description
+            description: payload.description,
+            day_id: payload.day_id
         };
 
         let response = ''
@@ -18,10 +19,8 @@ export default {
                 postData
             )
         } catch (error) {
-            console.log("ERRRR:: ",error.response.data)
             throw error.response.data
         }
-        console.log(response);
 
         return response;
     }
