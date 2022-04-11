@@ -17,7 +17,7 @@ export default {
     async [LOGIN_ACTION](context, payload) {
         return context.dispatch(AUTH_ACTION, {
             ...payload,
-            url: "/login/"
+            url: "/login"
         })
 
     },
@@ -26,11 +26,7 @@ export default {
 
         try {
             await axiosInstance.post(
-                "/email/verification-notification", {
-                    headers: {
-                        Authorization: 'Bearer ' + store.getters[`auth/${GET_USER_TOKEN_GETTER}`],
-                    }
-                }
+                "/email/verification-notification"
             )
         } catch (e) {
             throw e.response.data

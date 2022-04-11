@@ -42,6 +42,10 @@
                                 <form @submit.prevent="onCreatePeriod" method="post">
                                     <div class="row">
                                         <div class="col-xl-12 mb-15">
+                                        
+                                            <div v-bind:class=type v-if="message">
+                                                {{ message }}
+                                            </div>
                                             <label class="form-label">Period Name</label>
                                             <input v-model.trim="name" type="text" class="form-control">
 
@@ -115,9 +119,8 @@ export default {
                 })
                 .catch(error => {
                     this.type = "alert alert-danger col-12 mb-16"
-                    this.message = error;
+                    this.message = error.message;
                 }).then(response => {
-                    console.log(response);
                     
                     if (response.data.error !== undefined) {
                         this.type = "alert alert-danger col-12 mb-16"

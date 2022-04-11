@@ -18,7 +18,7 @@ export default {
                 postData
             )
         } catch (error) {
-            console.log(error);
+            console.log("ERRRR:: ",error.response.data)
             throw error.response.data
         }
         console.log(response);
