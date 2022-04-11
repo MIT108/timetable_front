@@ -4,7 +4,8 @@ import {
     CHANGE_DAY_STATUS,
     CREATE_NEW_DAY, DELETE_DAY, DISPLAY_ALL_DAYS, 
     GET_PERIOD_OF_DAY,
-    SET_CURRENT_DAY
+    SET_CURRENT_DAY,
+    UPDATE_NEW_DAY
 } from "../../TimetableConstants";
 
 
@@ -29,7 +30,27 @@ export default {
         return response;
 
     },
+    async [UPDATE_NEW_DAY](__, payload){
+        let postData = {
+            day_id: payload.id,
+            name: payload.name,
+            description: payload.description
+        }
 
+        let response = ''
+
+        try {
+            response = await axiosInstance.post(
+                "/timetable/days/update",
+                postData
+            )
+        } catch (error) {
+            throw error.response.data
+        }
+
+        return response
+
+    },
     async [DISPLAY_ALL_DAYS](__, payload){
         let urlData = payload.url
 
