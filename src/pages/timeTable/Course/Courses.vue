@@ -83,6 +83,26 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="col-12">
+                                    <div class="card transparent">
+                                        <div class="card-header">
+                                            <h4 class="card-title">Courses</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="g-discussion-inner row">
+                                                <div class="col-lg-6 col-xl-12">
+                                                    <div class="bg-white py-12 px-12 rounded d-flex mb-20 justify-content-between align-items-center align-items-center shadow-sm">
+                                                        <div class="flex-grow-1">
+                                                            <h5 class="mb-5 me-10 fs-16">The Advanced Web Developer Bootcamp</h5>
+                                                            <p class="mb-0 fs-14">Development</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
